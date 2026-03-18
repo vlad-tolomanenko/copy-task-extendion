@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - Asana Task Copy</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #f5f5f5;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #f06a6a 0%, #e85d5d 100%);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .header-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .header-title {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .header-subtitle {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 30px;
+    }
+
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #151b26;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+
+    .setting-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      transition: background 0.2s ease;
+    }
+
+    .setting-item:hover {
+      background: #f0f1f2;
+    }
+
+    .setting-info {
+      flex: 1;
+    }
+
+    .setting-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: #151b26;
+      margin-bottom: 4px;
+    }
+
+    .setting-description {
+      font-size: 13px;
+      color: #6d6e6f;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 50px;
+      height: 26px;
+      margin-left: 16px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .3s;
+      border-radius: 26px;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+    }
+
+    input:checked + .toggle-slider {
+      background-color: #f06a6a;
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(24px);
+    }
+
+    .select-container {
+      padding: 16px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .select-box {
+      width: 100%;
+      padding: 10px 14px;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      background: white;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+    }
+
+    .select-box:hover {
+      border-color: #f06a6a;
+    }
+
+    .select-box:focus {
+      outline: none;
+      border-color: #f06a6a;
+      box-shadow: 0 0 0 3px rgba(240, 106, 106, 0.1);
+    }
+
+    .info-box {
+      background: #fff9e6;
+      border-left: 4px solid #ffc107;
+      padding: 16px;
+      border-radius: 4px;
+      margin-top: 20px;
+    }
+
+    .info-box-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #151b26;
+    }
+
+    .info-box-content {
+      font-size: 13px;
+      color: #6d6e6f;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+
+    .keyboard-shortcut {
+      display: inline-block;
+      background: white;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      border: 1px solid #ddd;
+      margin: 0 2px;
+    }
+
+    .logs-button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      background: white;
+      border: 2px solid #f06a6a;
+      color: #f06a6a;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .logs-button:hover {
+      background: #f06a6a;
+      color: white;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 800px;
+      max-height: 80vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      padding: 20px;
+      background: #f8f9fa;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #6d6e6f;
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-footer {
+      padding: 16px 20px;
+      background: #f8f9fa;
+      border-top: 1px solid #e0e0e0;
+      display: flex;
+      gap: 12px;
+    }
+
+    .modal-button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .modal-button-primary {
+      background: #f06a6a;
+      color: white;
+    }
+
+    .modal-button-primary:hover {
+      background: #e85d5d;
+    }
+
+    .modal-button-secondary {
+      background: white;
+      color: #6d6e6f;
+      border: 1px solid #e0e0e0;
+    }
+
+    .modal-button-secondary:hover {
+      background: #f8f9fa;
+    }
+
+    .log-entry {
+      padding: 12px;
+      margin-bottom: 8px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      border-left: 4px solid #e0e0e0;
+      font-size: 13px;
+    }
+
+    .log-entry.error {
+      border-left-color: #f44336;
+    }
+
+    .log-entry.warn {
+      border-left-color: #ff9800;
+    }
+
+    .log-entry.info {
+      border-left-color: #2196f3;
+    }
+
+    .log-entry.debug {
+      border-left-color: #9e9e9e;
+    }
+
+    .log-timestamp {
+      font-size: 11px;
+      color: #9e9e9e;
+      margin-bottom: 4px;
+    }
+
+    .log-level {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-right: 8px;
+    }
+
+    .log-level.error { background: #ffebee; color: #c62828; }
+    .log-level.warn { background: #fff3e0; color: #ef6c00; }
+    .log-level.info { background: #e3f2fd; color: #1565c0; }
+    .log-level.debug { background: #f5f5f5; color: #616161; }
+
+    .log-message {
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .log-data {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      color: #6d6e6f;
+      background: white;
+      padding: 8px;
+      border-radius: 4px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .empty-logs {
+      text-align: center;
+      padding: 40px;
+      color: #9e9e9e;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="header-icon">⚙️</div>
+      <div class="header-title" data-i18n="settingsTitle">Settings</div>
+      <div class="header-subtitle" data-i18n="extensionName">Asana Task Copy Extension</div>
+    </div>
+
+    <div class="content">
+      <!-- Language Selection -->
+      <div class="section">
+        <div class="section-title" data-i18n="language">🌐 Language</div>
+        <div class="select-container">
+          <select class="select-box" id="language">
+            <option value="en">English</option>
+            <option value="ru">Русский (Russian)</option>
+            <option value="fr">Français (French)</option>
+            <option value="de">Deutsch (German)</option>
+            <option value="es">Español (Spanish)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Default Format -->
+      <div class="section">
+        <div class="section-title" data-i18n="defaultFormat">📝 Default format</div>
+        <div class="select-container">
+          <select class="select-box" id="defaultFormat">
+            <option value="markdown">Markdown - [title](link)</option>
+            <option value="html">HTML - &lt;a href="link"&gt;title&lt;/a&gt;</option>
+            <option value="plain">Plain text - title - link</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Copy Methods -->
+      <div class="section">
+        <div class="section-title" data-i18n="copyMethods">🎯 Copy methods</div>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-name" data-i18n="enableHotkey">⌨️ Keyboard shortcut</div>
+            <div class="setting-description" data-i18n="enableHotkeyDesc">
+              <span class="keyboard-shortcut">Alt+Shift+C</span>
+            </div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="enableHotkey">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-name" data-i18n="enableToolbarButton">🔘 Toolbar button</div>
+            <div class="setting-description" data-i18n="enableToolbarButtonDesc">Click the extension icon in the toolbar</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="enableToolbarButton">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-name" data-i18n="enableContextMenu">🖱️ Context menu</div>
+            <div class="setting-description" data-i18n="enableContextMenuDesc">Right-click → Copy Asana task</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="enableContextMenu">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-name" data-i18n="enableInPageButton">📌 In-page button</div>
+            <div class="setting-description" data-i18n="enableInPageButtonDesc">Adds a "Copy" button next to the task</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="enableInPageButton">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Notifications -->
+      <div class="section">
+        <div class="section-title" data-i18n="notifications">🔔 Notifications</div>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-name" data-i18n="showNotification">Show notifications</div>
+            <div class="setting-description" data-i18n="showNotificationDesc">Pop-up notification when copying</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="showNotification">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Logging -->
+      <div class="section">
+        <div class="section-title" data-i18n="logging">📊 Logging & Debugging</div>
+        
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-name" data-i18n="enableLogging">Enable logging</div>
+            <div class="setting-description" data-i18n="enableLoggingDesc">Save error logs for troubleshooting (max 100 entries, ~50KB)</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="enableLogging">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-name" data-i18n="enableDebugConsole">Debug console output</div>
+            <div class="setting-description" data-i18n="enableDebugConsoleDesc">Show logs in browser console (F12)</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="enableDebugConsole">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <button class="logs-button" id="viewLogsButton" data-i18n="viewLogs">📋 View Logs</button>
+      </div>
+
+      <!-- Info Box -->
+      <div class="info-box">
+        <div class="info-box-title" data-i18n="howToUse">💡 How to use:</div>
+        <div class="info-box-content" data-i18n="howToUseText">1. Open any task in Asana
+2. Use any enabled copy method
+3. Paste the copied text anywhere (Slack, Notion, email, etc.)
+
+The link will be automatically embedded in the task title!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logs Modal -->
+  <div class="modal" id="logsModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" data-i18n="logsTitle">Extension Logs</div>
+        <button class="modal-close" id="closeModal">×</button>
+      </div>
+      <div class="modal-body" id="logsContent">
+        <div class="empty-logs" data-i18n="logsEmpty">No logs yet</div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-button modal-button-secondary" id="downloadLogsButton" data-i18n="downloadLogs">Download Logs</button>
+        <button class="modal-button modal-button-secondary" id="clearLogsButton" data-i18n="clearLogs">Clear Logs</button>
+        <button class="modal-button modal-button-primary" id="closeLogsButton" data-i18n="close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="options-new.js"></script>
+</body>
+</html>
