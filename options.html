@@ -177,6 +177,7 @@
       padding: 16px;
       border-radius: 4px;
       margin-top: 20px;
+      margin-bottom: 24px;
     }
 
     .info-box-title {
@@ -395,6 +396,16 @@
     </div>
 
     <div class="content">
+      <!-- Info Box - How to use (moved before Language) -->
+      <div class="info-box">
+        <div class="info-box-title" data-i18n="howToUse">💡 How to use:</div>
+        <div class="info-box-content" data-i18n="howToUseText">1. Open any task in Asana
+2. Use any enabled copy method
+3. Paste the copied text anywhere (Slack, Notion, email, etc.)
+
+The link will be automatically embedded in the task title!</div>
+      </div>
+
       <!-- Language Selection -->
       <div class="section">
         <div class="section-title" data-i18n="language">🌐 Language</div>
@@ -429,23 +440,12 @@
         <div class="setting-item">
           <div class="setting-info">
             <div class="setting-name" data-i18n="enableHotkey">⌨️ Keyboard shortcut</div>
-            <div class="setting-description" data-i18n="enableHotkeyDesc">
-              <span class="keyboard-shortcut">Alt+Shift+C</span>
+            <div class="setting-description">
+              <span class="keyboard-shortcut" id="shortcut-display">Alt+Shift+C</span>
             </div>
           </div>
           <label class="toggle-switch">
             <input type="checkbox" id="enableHotkey">
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-name" data-i18n="enableToolbarButton">🔘 Toolbar button</div>
-            <div class="setting-description" data-i18n="enableToolbarButtonDesc">Click the extension icon in the toolbar</div>
-          </div>
-          <label class="toggle-switch">
-            <input type="checkbox" id="enableToolbarButton">
             <span class="toggle-slider"></span>
           </label>
         </div>
@@ -518,15 +518,6 @@
         <button class="logs-button" id="viewLogsButton" data-i18n="viewLogs">📋 View Logs</button>
       </div>
 
-      <!-- Info Box -->
-      <div class="info-box">
-        <div class="info-box-title" data-i18n="howToUse">💡 How to use:</div>
-        <div class="info-box-content" data-i18n="howToUseText">1. Open any task in Asana
-2. Use any enabled copy method
-3. Paste the copied text anywhere (Slack, Notion, email, etc.)
-
-The link will be automatically embedded in the task title!</div>
-      </div>
     </div>
   </div>
 
@@ -549,6 +540,6 @@ The link will be automatically embedded in the task title!</div>
   </div>
 
   <script src="i18n.js"></script>
-  <script src="options-new.js"></script>
+  <script src="options.js"></script>
 </body>
 </html>

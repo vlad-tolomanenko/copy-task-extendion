@@ -2,7 +2,7 @@
 async function translatePage() {
   const lang = await getLanguage();
   const messages = MESSAGES[lang];
-  
+
   document.querySelectorAll('[data-i18n]').forEach(element => {
     const key = element.getAttribute('data-i18n');
     if (messages[key]) {
@@ -13,6 +13,12 @@ async function translatePage() {
       }
     }
   });
+
+  // Update keyboard shortcut display
+  const shortcutDisplay = document.getElementById('shortcut-display');
+  if (shortcutDisplay) {
+    shortcutDisplay.textContent = getKeyboardShortcut();
+  }
 }
 
 // Load settings
@@ -21,7 +27,6 @@ async function loadSettings() {
   const settings = result.settings || {
     defaultFormat: 'markdown',
     enableHotkey: true,
-    enableToolbarButton: true,
     enableContextMenu: true,
     enableInPageButton: true,
     showNotification: true,
@@ -33,7 +38,6 @@ async function loadSettings() {
   document.getElementById('language').value = settings.language;
   document.getElementById('defaultFormat').value = settings.defaultFormat;
   document.getElementById('enableHotkey').checked = settings.enableHotkey;
-  document.getElementById('enableToolbarButton').checked = settings.enableToolbarButton;
   document.getElementById('enableContextMenu').checked = settings.enableContextMenu;
   document.getElementById('enableInPageButton').checked = settings.enableInPageButton;
   document.getElementById('showNotification').checked = settings.showNotification;
@@ -49,7 +53,6 @@ async function saveSettings() {
     language: document.getElementById('language').value,
     defaultFormat: document.getElementById('defaultFormat').value,
     enableHotkey: document.getElementById('enableHotkey').checked,
-    enableToolbarButton: document.getElementById('enableToolbarButton').checked,
     enableContextMenu: document.getElementById('enableContextMenu').checked,
     enableInPageButton: document.getElementById('enableInPageButton').checked,
     showNotification: document.getElementById('showNotification').checked,

@@ -77,6 +77,33 @@
       transform: translateY(0);
     }
 
+    .format-button.is-default {
+      background: rgba(240, 106, 106, 0.07);
+      border-left: 3px solid rgba(240, 106, 106, 0.5);
+    }
+
+    .format-button.is-default:hover {
+      background: #f06a6a;
+      color: white;
+    }
+
+    .default-badge {
+      font-size: 10px;
+      font-weight: 600;
+      color: #f06a6a;
+      background: rgba(240, 106, 106, 0.12);
+      padding: 2px 6px;
+      border-radius: 10px;
+      margin-left: auto;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .format-button.is-default:hover .default-badge {
+      color: white;
+      background: rgba(255, 255, 255, 0.25);
+    }
+
     .format-icon {
       font-size: 18px;
       min-width: 20px;
@@ -157,6 +184,7 @@
     </div>
   </div>
 
+  <script src="i18n.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

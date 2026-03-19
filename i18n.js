@@ -30,8 +30,6 @@ const MESSAGES = {
     // Copy methods
     enableHotkey: 'Keyboard shortcut',
     enableHotkeyDesc: 'Alt+Shift+C',
-    enableToolbarButton: 'Toolbar button',
-    enableToolbarButtonDesc: 'Click the extension icon in the toolbar',
     enableContextMenu: 'Context menu',
     enableContextMenuDesc: 'Right-click → Copy Asana task',
     enableInPageButton: 'In-page button',
@@ -53,6 +51,7 @@ const MESSAGES = {
     saved: 'Saved!',
     copy: 'Copy',
     close: 'Close',
+    defaultLabel: 'Default',
     
     // Notifications
     copiedMarkdown: 'Copied as Markdown!',
@@ -105,8 +104,6 @@ const MESSAGES = {
     
     enableHotkey: 'Горячая клавиша',
     enableHotkeyDesc: 'Alt+Shift+C',
-    enableToolbarButton: 'Кнопка в панели расширений',
-    enableToolbarButtonDesc: 'Нажмите на иконку расширения в панели браузера',
     enableContextMenu: 'Контекстное меню',
     enableContextMenuDesc: 'Правая кнопка мыши → Копировать задачу Asana',
     enableInPageButton: 'Кнопка в интерфейсе Asana',
@@ -126,6 +123,7 @@ const MESSAGES = {
     saved: 'Сохранено!',
     copy: 'Копировать',
     close: 'Закрыть',
+    defaultLabel: 'По умолчанию',
     
     copiedMarkdown: 'Скопировано в Markdown!',
     copiedHTML: 'Скопировано в HTML!',
@@ -173,8 +171,6 @@ const MESSAGES = {
     
     enableHotkey: 'Raccourci clavier',
     enableHotkeyDesc: 'Alt+Shift+C',
-    enableToolbarButton: 'Bouton de barre d\'outils',
-    enableToolbarButtonDesc: 'Cliquez sur l\'icône de l\'extension',
     enableContextMenu: 'Menu contextuel',
     enableContextMenuDesc: 'Clic droit → Copier la tâche Asana',
     enableInPageButton: 'Bouton dans la page',
@@ -194,6 +190,7 @@ const MESSAGES = {
     saved: 'Enregistré!',
     copy: 'Copier',
     close: 'Fermer',
+    defaultLabel: 'Par défaut',
     
     copiedMarkdown: 'Copié en Markdown!',
     copiedHTML: 'Copié en HTML!',
@@ -241,8 +238,6 @@ const MESSAGES = {
     
     enableHotkey: 'Tastenkombination',
     enableHotkeyDesc: 'Alt+Shift+C',
-    enableToolbarButton: 'Symbolleistenschaltfläche',
-    enableToolbarButtonDesc: 'Klicken Sie auf das Erweiterungssymbol',
     enableContextMenu: 'Kontextmenü',
     enableContextMenuDesc: 'Rechtsklick → Asana-Aufgabe kopieren',
     enableInPageButton: 'Schaltfläche auf der Seite',
@@ -262,6 +257,7 @@ const MESSAGES = {
     saved: 'Gespeichert!',
     copy: 'Kopieren',
     close: 'Schließen',
+    defaultLabel: 'Standard',
     
     copiedMarkdown: 'Als Markdown kopiert!',
     copiedHTML: 'Als HTML kopiert!',
@@ -309,8 +305,6 @@ const MESSAGES = {
     
     enableHotkey: 'Atajo de teclado',
     enableHotkeyDesc: 'Alt+Shift+C',
-    enableToolbarButton: 'Botón de barra de herramientas',
-    enableToolbarButtonDesc: 'Haz clic en el icono de la extensión',
     enableContextMenu: 'Menú contextual',
     enableContextMenuDesc: 'Clic derecho → Copiar tarea de Asana',
     enableInPageButton: 'Botón en la página',
@@ -330,6 +324,7 @@ const MESSAGES = {
     saved: '¡Guardado!',
     copy: 'Copiar',
     close: 'Cerrar',
+    defaultLabel: 'Predeterminado',
     
     copiedMarkdown: '¡Copiado como Markdown!',
     copiedHTML: '¡Copiado como HTML!',
@@ -377,8 +372,6 @@ const MESSAGES = {
     
     enableHotkey: 'कीबोर्ड शॉर्टकट',
     enableHotkeyDesc: 'Alt+Shift+C',
-    enableToolbarButton: 'टूलबार बटन',
-    enableToolbarButtonDesc: 'एक्सटेंशन आइकन पर क्लिक करें',
     enableContextMenu: 'संदर्भ मेनू',
     enableContextMenuDesc: 'राइट क्लिक → Asana कार्य कॉपी करें',
     enableInPageButton: 'पेज में बटन',
@@ -398,6 +391,7 @@ const MESSAGES = {
     saved: 'सहेजा गया!',
     copy: 'कॉपी करें',
     close: 'बंद करें',
+    defaultLabel: 'डिफ़ॉल्ट',
     
     copiedMarkdown: 'Markdown के रूप में कॉपी किया गया!',
     copiedHTML: 'HTML के रूप में कॉपी किया गया!',
@@ -435,4 +429,11 @@ async function getLanguage() {
 async function getMessage(key) {
   const lang = await getLanguage();
   return MESSAGES[lang]?.[key] || MESSAGES['en'][key] || key;
+}
+
+// Helper function to get keyboard shortcut based on OS
+function getKeyboardShortcut() {
+  const isMac = navigator.userAgentData?.platform === 'macOS' ||
+                /Mac|iPhone|iPad|iPod/.test(navigator.userAgent);
+  return isMac ? 'Option+Shift+C' : 'Alt+Shift+C';
 }
