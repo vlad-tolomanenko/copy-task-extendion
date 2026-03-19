@@ -135,111 +135,26 @@ function formatTask(title, url, format) {
   }
 }
 
-// Function to copy to clipboard with rich text support
+// Function to copy to clipboard
 async function copyToClipboard(text, format, taskTitle, taskUrl) {
   logDebug('Attempting to copy', { format, textLength: text.length });
-  
+
   try {
-    // Create ClipboardItem with multiple formats for maximum compatibility
-    const clipboardItems = [];
-    
-    // For Markdown format add HTML representation for rich text
-    if (format === 'markdown') {
-      const htmlVersion = `<a href="${taskUrl}">${taskTitle}</a>`;
-      const blob = new Blob([htmlVersion], { type: 'text/html' });
-      const textBlob = new Blob([text], { type: 'text/plain' });
-      
-      clipboardItems.push(
-        new ClipboardItem({
-          'text/html': blob,
-          'text/plain': textBlob
-        })
-      );
-    } else if (format === 'html') {
-      const blob = new Blob([text], { type: 'text/html' });
-      const plainText = `${taskTitle} - ${taskUrl}`;
-      const textBlob = new Blob([plainText], { type: 'text/plain' });
-      
-      clipboardItems.push(
-        new ClipboardItem({
-          'text/html': blob,
-          'text/plain': textBlob
-        })
-      );
-    } else {
-      // Plain text
-      const textBlob = new Blob([text], { type: 'text/plain' });
-      clipboardItems.push(
-        new ClipboardItem({
-          'text/plain': textBlob
-        })
-      );
-    }
-    
-    await navigator.clipboard.write(clipboardItems);
-    logInfo('Copy successful (clipboard API with rich text)', { format });
-    
-    // Show notification
+    await navigator.clipboard.writeText(text);
+    logInfo('Copy successful', { format });
+
     const settings = await chrome.storage.sync.get(['settings']);
     if (settings.settings?.showNotification !== false) {
       showNotification(format);
     }
-
     return true;
   } catch (err) {
-    logError('Rich text clipboard failed, trying text-only', err);
+    logError('Copy failed', err);
 
-    // Try plain text method
-    try {
-      await navigator.clipboard.writeText(text);
-      logInfo('Copy successful (clipboard API, text-only)', { format });
-
-      const settings = await chrome.storage.sync.get(['settings']);
-      if (settings.settings?.showNotification !== false) {
-        showNotification(format);
-      }
-
-      return true;
-    } catch (err2) {
-      logError('Clipboard API failed, trying fallback', err2);
-
-      // Try fallback method
-      try {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.top = '-9999px';
-        textArea.style.left = '-9999px';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        
-        const successful = document.execCommand('copy');
-        document.body.removeChild(textArea);
-        
-        if (successful) {
-          logInfo('Copy successful (execCommand fallback)', { format });
-          const settings = await chrome.storage.sync.get(['settings']);
-          if (settings.settings?.showNotification !== false) {
-            showNotification(format);
-          }
-          return true;
-        } else {
-          throw new Error('execCommand returned false');
-        }
-      } catch (fallbackErr) {
-        logError('All copy methods failed', { 
-          clipboardError: err.toString(),
-          textOnlyError: err2.toString(),
-          fallbackError: fallbackErr.toString() 
-        });
-        
-        const lang = await getLanguage();
-        const messages = MESSAGES[lang];
-        alert(messages.copyError || 'Failed to copy. Please check browser permissions.');
-        return false;
-      }
-    }
+    const lang = await getLanguage();
+    const messages = MESSAGES[lang];
+    alert(messages.copyError || 'Failed to copy. Please check browser permissions.');
+    return false;
   }
 }
 
@@ -342,17 +257,17 @@ async function addInPageButton() {
   copyButton.addEventListener('click', async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     const taskInfo = getTaskInfo();
     if (!taskInfo.title) {
       alert(messages.taskNotFound);
       return;
     }
 
+    // Use same path as popup button: send to background → background sends copyTask back
     const currentSettings = await chrome.storage.sync.get(['settings']);
     const format = currentSettings.settings?.defaultFormat || 'markdown';
-    const formatted = formatTask(taskInfo.title, taskInfo.url, format);
-    copyToClipboard(formatted, format, taskInfo.title, taskInfo.url);
+    chrome.runtime.sendMessage({ action: 'copyFromPopup', format });
   });
 
   // Insert the button

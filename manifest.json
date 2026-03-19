@@ -5,6 +5,7 @@
   "description": "Copy Asana tasks with title and link in various formats",
   "permissions": [
     "activeTab",
+    "clipboardWrite",
     "contextMenus",
     "storage"
   ],

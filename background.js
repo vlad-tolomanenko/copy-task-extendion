@@ -6,7 +6,6 @@ chrome.runtime.onInstalled.addListener(() => {
       const defaultSettings = {
         defaultFormat: 'markdown',
         enableHotkey: true,
-        enableToolbarButton: true,
         enableContextMenu: true,
         enableInPageButton: true,
         showNotification: true,
@@ -117,10 +116,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'copyFromPopup') {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabs[0]) {
-        chrome.tabs.sendMessage(tabs[0].id, {
-          action: 'copyTask',
-          format: request.format
-        });
+        // Small delay so the popup fully closes and the page regains focus
+        // before writeText is called (avoids "Document is not focused" error)
+        setTimeout(() => {
+          chrome.tabs.sendMessage(tabs[0].id, {
+            action: 'copyTask',
+            format: request.format
+          });
+        }, 150);
       }
     });
   }
