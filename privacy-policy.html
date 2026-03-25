@@ -41,7 +41,9 @@
       <strong>Debug logs</strong> (optional, disabled by default) are stored via
       <code>chrome.storage.local</code> — on your device only, never synced or transmitted.
       Logs are automatically capped at 100 entries / 50 KB and can be cleared at any time
-      from the extension settings page.
+      from the extension settings page. When task title extraction fails, logs may include
+      up to 500 characters of page HTML to help diagnose selector issues. This data remains
+      on your device and is never transmitted.
     </li>
   </ul>
 
@@ -61,7 +63,12 @@
   </ul>
 
   <h2>Third-party services</h2>
-  <p>None. The extension does not use analytics, crash reporting, advertising, or any external service.</p>
+  <p>
+    None. The extension does not use analytics, crash reporting, advertising, or any external service.
+    The settings page includes an optional donation link to DonationAlerts — clicking it opens an
+    external page in a new tab. No data is sent automatically; the link is only followed if you
+    explicitly click it.
+  </p>
 
   <h2>Changes to this policy</h2>
   <p>
@@ -72,7 +79,12 @@
   <h2>Contact</h2>
   <p>
     Questions about privacy? Open an issue on the
-    <a href="https://github.com/your-username/copy-asana-task-extension">GitHub repository</a>.
+    <a href="https://github.com/vlad-tolomanenko/copy-task-extendion">GitHub repository</a>.
+  </p>
+
+  <p style="margin-top: 40px; font-size: 13px; color: #aaa;">
+    Task Link Copier is an independent tool and is not affiliated with, endorsed by, or
+    sponsored by Asana, Inc.
   </p>
 </body>
 </html>
