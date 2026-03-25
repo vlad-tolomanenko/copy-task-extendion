@@ -2,8 +2,8 @@
 const MESSAGES = {
   en: {
     // General
-    extensionName: 'Asana Task Copy',
-    extensionDescription: 'Copy Asana tasks with title and link in various formats',
+    extensionName: 'Task Link Copier',
+    extensionDescription: 'Copy task titles and links in Markdown, HTML, or plain text',
     
     // Popup
     copyTask: 'Copy task',
@@ -52,7 +52,8 @@ const MESSAGES = {
     copy: 'Copy',
     close: 'Close',
     defaultLabel: 'Default',
-    
+    shortcutLabel: 'Shortcut',
+
     // Notifications
     copiedMarkdown: 'Copied as Markdown!',
     copiedHTML: 'Copied as HTML!',
@@ -80,8 +81,8 @@ const MESSAGES = {
   },
   
   ru: {
-    extensionName: 'Asana Task Copy',
-    extensionDescription: 'Копирование задач Asana с названием и ссылкой в различных форматах',
+    extensionName: 'Task Link Copier',
+    extensionDescription: 'Копирование ссылок на задачи в форматах Markdown, HTML и обычный текст',
     
     copyTask: 'Копировать задачу',
     notAsanaPage: 'Откройте задачу в Asana, чтобы использовать расширение',
@@ -124,7 +125,8 @@ const MESSAGES = {
     copy: 'Копировать',
     close: 'Закрыть',
     defaultLabel: 'По умолчанию',
-    
+    shortcutLabel: 'Горячая клавиша',
+
     copiedMarkdown: 'Скопировано в Markdown!',
     copiedHTML: 'Скопировано в HTML!',
     copiedPlain: 'Скопировано как простой текст!',
@@ -147,8 +149,8 @@ const MESSAGES = {
   },
   
   fr: {
-    extensionName: 'Asana Task Copy',
-    extensionDescription: 'Copier les tâches Asana avec titre et lien dans différents formats',
+    extensionName: 'Task Link Copier',
+    extensionDescription: 'Copier les titres et liens de tâches en Markdown, HTML ou texte simple',
     
     copyTask: 'Copier la tâche',
     notAsanaPage: 'Ouvrez une tâche Asana pour utiliser cette extension',
@@ -191,7 +193,8 @@ const MESSAGES = {
     copy: 'Copier',
     close: 'Fermer',
     defaultLabel: 'Par défaut',
-    
+    shortcutLabel: 'Raccourci',
+
     copiedMarkdown: 'Copié en Markdown!',
     copiedHTML: 'Copié en HTML!',
     copiedPlain: 'Copié en texte simple!',
@@ -214,8 +217,8 @@ const MESSAGES = {
   },
   
   de: {
-    extensionName: 'Asana Task Copy',
-    extensionDescription: 'Asana-Aufgaben mit Titel und Link in verschiedenen Formaten kopieren',
+    extensionName: 'Task Link Copier',
+    extensionDescription: 'Aufgabentitel und Links in Markdown, HTML oder Klartext kopieren',
     
     copyTask: 'Aufgabe kopieren',
     notAsanaPage: 'Öffnen Sie eine Asana-Aufgabe, um diese Erweiterung zu verwenden',
@@ -258,7 +261,8 @@ const MESSAGES = {
     copy: 'Kopieren',
     close: 'Schließen',
     defaultLabel: 'Standard',
-    
+    shortcutLabel: 'Tastenkombination',
+
     copiedMarkdown: 'Als Markdown kopiert!',
     copiedHTML: 'Als HTML kopiert!',
     copiedPlain: 'Als einfacher Text kopiert!',
@@ -281,8 +285,8 @@ const MESSAGES = {
   },
   
   es: {
-    extensionName: 'Asana Task Copy',
-    extensionDescription: 'Copiar tareas de Asana con título y enlace en varios formatos',
+    extensionName: 'Task Link Copier',
+    extensionDescription: 'Copiar títulos y enlaces de tareas en Markdown, HTML o texto simple',
     
     copyTask: 'Copiar tarea',
     notAsanaPage: 'Abre una tarea de Asana para usar esta extensión',
@@ -325,7 +329,8 @@ const MESSAGES = {
     copy: 'Copiar',
     close: 'Cerrar',
     defaultLabel: 'Predeterminado',
-    
+    shortcutLabel: 'Atajo',
+
     copiedMarkdown: '¡Copiado como Markdown!',
     copiedHTML: '¡Copiado como HTML!',
     copiedPlain: '¡Copiado como texto simple!',
@@ -348,8 +353,8 @@ const MESSAGES = {
   },
   
   hi: {
-    extensionName: 'Asana Task Copy',
-    extensionDescription: 'विभिन्न प्रारूपों में शीर्षक और लिंक के साथ Asana कार्यों की प्रतिलिपि बनाएं',
+    extensionName: 'Task Link Copier',
+    extensionDescription: 'Markdown, HTML या सादे पाठ में कार्य शीर्षक और लिंक कॉपी करें',
     
     copyTask: 'कार्य कॉपी करें',
     notAsanaPage: 'इस एक्सटेंशन का उपयोग करने के लिए Asana कार्य खोलें',
@@ -392,7 +397,8 @@ const MESSAGES = {
     copy: 'कॉपी करें',
     close: 'बंद करें',
     defaultLabel: 'डिफ़ॉल्ट',
-    
+    shortcutLabel: 'शॉर्टकट',
+
     copiedMarkdown: 'Markdown के रूप में कॉपी किया गया!',
     copiedHTML: 'HTML के रूप में कॉपी किया गया!',
     copiedPlain: 'सादे पाठ के रूप में कॉपी किया गया!',

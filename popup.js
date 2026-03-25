@@ -3,22 +3,25 @@ chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
   const currentTab = tabs[0];
   const content = document.getElementById('content');
 
+  // Set header title via i18n
+  const lang = await getLanguage();
+  const messages = MESSAGES[lang];
+  document.getElementById('header-title').textContent = messages.copyTask;
+
   if (!currentTab.url || !currentTab.url.includes('app.asana')) {
     content.innerHTML = `
       <div class="not-asana">
         <div class="not-asana-icon">🔍</div>
-        <p>Open a task in Asana<br>to use this extension</p>
+        <p>${messages.notAsanaPage}</p>
       </div>
     `;
     return;
   }
 
-  // Get default format, language, and show format buttons
+  // Get default format and show format buttons
   const settingsResult = await chrome.storage.sync.get(['settings']);
   const defaultFormat = settingsResult.settings?.defaultFormat || 'markdown';
   const shortcut = getKeyboardShortcut();
-  const lang = await getLanguage();
-  const messages = MESSAGES[lang];
   const defaultLabel = messages.defaultLabel || 'Default';
 
   const badge = `<span class="default-badge">${defaultLabel}</span>`;
@@ -56,13 +59,13 @@ chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {
     <div class="divider"></div>
 
     <div class="shortcut-hint">
-      Shortcut: ${shortcut}
+      ${messages.shortcutLabel || 'Shortcut'}: ${shortcut}
     </div>
 
     <div class="divider"></div>
 
     <a href="#" class="settings-link" id="settings-link">
-      ⚙️ Settings
+      ⚙️ ${messages.settings}
     </a>
   `;
 

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Task Link Copier</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 760px;
+      margin: 60px auto;
+      padding: 0 24px;
+      color: #2c2c2c;
+      line-height: 1.7;
+    }
+    h1 { font-size: 28px; margin-bottom: 4px; }
+    h2 { font-size: 18px; margin-top: 36px; }
+    .meta { color: #888; font-size: 14px; margin-bottom: 40px; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy</h1>
+  <p class="meta">Task Link Copier Chrome Extension &mdash; Last updated: March 2025</p>
+
+  <h2>Summary</h2>
+  <p>
+    Task Link Copier does <strong>not collect, transmit, or share any personal data</strong>.
+    All data stays on your device. The extension has no servers and makes no network requests of its own.
+  </p>
+
+  <h2>What data is stored and where</h2>
+  <ul>
+    <li>
+      <strong>Settings</strong> (default format, language, enabled features) are stored via
+      <code>chrome.storage.sync</code> — encrypted by Chrome and synced across your signed-in
+      devices. No third party has access to this data.
+    </li>
+    <li>
+      <strong>Debug logs</strong> (optional, disabled by default) are stored via
+      <code>chrome.storage.local</code> — on your device only, never synced or transmitted.
+      Logs are automatically capped at 100 entries / 50 KB and can be cleared at any time
+      from the extension settings page.
+    </li>
+  </ul>
+
+  <h2>What the extension accesses</h2>
+  <ul>
+    <li>
+      <strong>Active tab URL</strong> — only to check whether the current page is a supported
+      task page. The URL is never stored or sent anywhere.
+    </li>
+    <li>
+      <strong>Page content</strong> — only to read the task title displayed on screen so it
+      can be copied to your clipboard. No page content is stored or transmitted.
+    </li>
+    <li>
+      <strong>Clipboard</strong> — write-only access to paste the formatted task link.
+    </li>
+  </ul>
+
+  <h2>Third-party services</h2>
+  <p>None. The extension does not use analytics, crash reporting, advertising, or any external service.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>
+    If the privacy practices change in a future version, this page will be updated and the
+    version number in the extension will be incremented.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Questions about privacy? Open an issue on the
+    <a href="https://github.com/your-username/copy-asana-task-extension">GitHub repository</a>.
+  </p>
+</body>
+</html>

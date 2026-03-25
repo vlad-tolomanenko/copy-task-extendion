@@ -1,6 +1,6 @@
-# 📋 Asana Task Copy - Chrome Extension
+# 📋 Task Link Copier - Chrome Extension
 
-Copy Asana tasks with title and link in various formats - now with multilingual support and advanced logging!
+Copy task titles and links in Markdown, HTML, or plain text — with multilingual support and advanced logging!
 
 ## ✨ Features
 
