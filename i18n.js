@@ -77,9 +77,18 @@ const MESSAGES = {
     logTimestamp: 'Time',
     logLevel: 'Level',
     logMessage: 'Message',
-    logData: 'Data'
+    logData: 'Data',
+    // Donate section
+    supportDevelopment: '❤️ Support development',
+    supportNote: 'Task Link Copier is free and always will be. If it saves you time — a coffee is very welcome 🙂',
+    donateViaDonationAlerts: 'Donate via DonationAlerts',
+    donateCrypto: 'Donate via crypto',
+    cryptoWallets: '₿ Crypto wallets',
+    copyAddress: 'Copy address',
+    qrCodeLabel: 'QR code',
+    generatedLocally: 'QR generated locally · no data sent'
   },
-  
+
   ru: {
     extensionName: 'Task Link Copier',
     extensionDescription: 'Копирование ссылок на задачи в форматах Markdown, HTML и обычный текст',
@@ -145,9 +154,18 @@ const MESSAGES = {
     logTimestamp: 'Время',
     logLevel: 'Уровень',
     logMessage: 'Сообщение',
-    logData: 'Данные'
+    logData: 'Данные',
+    // Donate section
+    supportDevelopment: '❤️ Поддержать разработку',
+    supportNote: 'Task Link Copier бесплатен и всегда будет таким. Если расширение экономит ваше время — буду рад чашке кофе 🙂',
+    donateViaDonationAlerts: 'Донат через DonationAlerts',
+    donateCrypto: 'Донат криптой',
+    cryptoWallets: '₿ Крипто-кошельки',
+    copyAddress: 'Скопировать адрес',
+    qrCodeLabel: 'QR-код',
+    generatedLocally: 'QR создан локально · данные не отправляются'
   },
-  
+
   fr: {
     extensionName: 'Task Link Copier',
     extensionDescription: 'Copier les titres et liens de tâches en Markdown, HTML ou texte simple',
@@ -213,9 +231,18 @@ const MESSAGES = {
     logTimestamp: 'Heure',
     logLevel: 'Niveau',
     logMessage: 'Message',
-    logData: 'Données'
+    logData: 'Données',
+    // Donate section
+    supportDevelopment: '❤️ Soutenir le développement',
+    supportNote: 'Task Link Copier est gratuit et le restera toujours. Si ça vous fait gagner du temps — un café serait le bienvenu 🙂',
+    donateViaDonationAlerts: 'Don via DonationAlerts',
+    donateCrypto: 'Don en crypto',
+    cryptoWallets: '₿ Portefeuilles crypto',
+    copyAddress: "Copier l'adresse",
+    qrCodeLabel: 'Code QR',
+    generatedLocally: 'QR généré localement · aucune donnée envoyée'
   },
-  
+
   de: {
     extensionName: 'Task Link Copier',
     extensionDescription: 'Aufgabentitel und Links in Markdown, HTML oder Klartext kopieren',
@@ -281,9 +308,18 @@ const MESSAGES = {
     logTimestamp: 'Zeit',
     logLevel: 'Ebene',
     logMessage: 'Nachricht',
-    logData: 'Daten'
+    logData: 'Daten',
+    // Donate section
+    supportDevelopment: '❤️ Entwicklung unterstützen',
+    supportNote: 'Task Link Copier ist kostenlos und wird es immer bleiben. Wenn es Ihnen Zeit spart — ein Kaffee ist herzlich willkommen 🙂',
+    donateViaDonationAlerts: 'Spende via DonationAlerts',
+    donateCrypto: 'Spende in Krypto',
+    cryptoWallets: '₿ Krypto-Wallets',
+    copyAddress: 'Adresse kopieren',
+    qrCodeLabel: 'QR-Code',
+    generatedLocally: 'QR lokal generiert · keine Daten gesendet'
   },
-  
+
   es: {
     extensionName: 'Task Link Copier',
     extensionDescription: 'Copiar títulos y enlaces de tareas en Markdown, HTML o texto simple',
@@ -349,9 +385,18 @@ const MESSAGES = {
     logTimestamp: 'Hora',
     logLevel: 'Nivel',
     logMessage: 'Mensaje',
-    logData: 'Datos'
+    logData: 'Datos',
+    // Donate section
+    supportDevelopment: '❤️ Apoyar el desarrollo',
+    supportNote: 'Task Link Copier es gratuito y siempre lo será. Si te ahorra tiempo — un café es muy bienvenido 🙂',
+    donateViaDonationAlerts: 'Donar via DonationAlerts',
+    donateCrypto: 'Donar en cripto',
+    cryptoWallets: '₿ Carteras cripto',
+    copyAddress: 'Copiar dirección',
+    qrCodeLabel: 'Código QR',
+    generatedLocally: 'QR generado localmente · no se envían datos'
   },
-  
+
   hi: {
     extensionName: 'Task Link Copier',
     extensionDescription: 'Markdown, HTML या सादे पाठ में कार्य शीर्षक और लिंक कॉपी करें',
@@ -417,7 +462,16 @@ const MESSAGES = {
     logTimestamp: 'समय',
     logLevel: 'स्तर',
     logMessage: 'संदेश',
-    logData: 'डेटा'
+    logData: 'डेटा',
+    // Donate section
+    supportDevelopment: '❤️ विकास का समर्थन करें',
+    supportNote: 'Task Link Copier मुफ़्त है और हमेशा रहेगा। अगर यह आपका समय बचाता है — एक कॉफ़ी बहुत स्वागत योग्य होगी 🙂',
+    donateViaDonationAlerts: 'DonationAlerts के ज़रिए दान करें',
+    donateCrypto: 'क्रिप्टो में दान करें',
+    cryptoWallets: '₿ क्रिप्टो वॉलेट',
+    copyAddress: 'पता कॉपी करें',
+    qrCodeLabel: 'QR कोड',
+    generatedLocally: 'QR स्थानीय रूप से बनाया गया · कोई डेटा नहीं भेजा गया'
   }
 };
 
