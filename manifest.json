@@ -2,9 +2,11 @@
   "author": "Vlad Tolomanenko",
   "manifest_version": 3,
   "name": "Task Link Copier",
-  "short_name": "Task Link Copier",
+  "short_name": "TaskCopier",
   "version": "1.0.0",
   "description": "Copy task titles and links in Markdown, HTML, or plain text — works with Asana and other project management tools",
+  "minimum_chrome_version": "102",
+  "homepage_url": "https://github.com/vlad-tolomanenko/copy-task-extendion",
   "permissions": [
     "activeTab",
     "clipboardWrite",
