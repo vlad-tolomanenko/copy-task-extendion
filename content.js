@@ -111,10 +111,9 @@ function getTaskInfo() {
   const taskUrl = window.location.href;
 
   if (!taskTitle) {
-    logError('Task title not found', { 
-      url: taskUrl, 
-      triedSelectors: selectors,
-      pageHTML: document.body.innerHTML.substring(0, 500)
+    logError('Task title not found', {
+      url: taskUrl,
+      triedSelectors: selectors
     });
   }
 
